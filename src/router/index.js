@@ -4,6 +4,7 @@ import HelloWorld from '@/components/HelloWorld'
 import Article from '@/components/Article'
 import Page from '@/components/Page'
 import MyPage from '@/components/MyPage'
+import ArticleWriter from '@/components/ArticleWriter'
 
 Vue.use(Router)
 
@@ -28,14 +29,9 @@ export default new Router({
       path: '/',
       name: 'HelloWorld',
       components: {
-        default: HelloWorld,
+        default: ArticleWriter,
         sub: Article
       }
-    },
-    {
-      path: '/articles',
-      name: 'Article',
-      component: Article
     },
     {
       path: '/mypage',
