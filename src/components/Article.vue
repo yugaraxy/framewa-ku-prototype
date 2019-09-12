@@ -1,7 +1,7 @@
 <template>
   <div class="articleContainer">
     <div id="article" v-for="article in articles" v-bind:key="article.id">
-      <p>{{ article.title }}</p>
+      <p>{{ article.title }}<br>{{ article.time }}分</p>
     </div>
     <router-view />
   </div>
@@ -13,12 +13,32 @@ export default {
   data: function () {
     return {
       articles: {
-        article1: {title: '雨の日のおつかい'},
-        article2: {title: 'あの人の謎'},
-        article3: {title: 'どこへでもいきたい'},
-        article4: {title: '青春の1ページ'},
-        article5: {title: '明日の晩ごはん'},
-        article6: {title: '餃子とチャーハン'}
+        article1: {
+          title: '何処へでも行きたい',
+          time: '五',
+          sentences: [
+            '「じゃあ、アイルランドはどうですか？ダブリンは良い街ですよ。少し雨が多いけど...」',
+            '留学先を探していた時、そう提案された。',
+            '他の候補地はどこも魅力歴なビーチやナイトクラブが自慢で、開放的に...'
+          ]
+        },
+        article2: {
+          title: '餃子とチャーハン',
+          time: '三',
+          sentences: [
+            '「じゃあ、アイルランドはどうですか？ダブリンは良い街ですよ。少し雨が多いけど...」',
+            '留学先を探していた時、そう提案された。'
+          ]
+        },
+        article3: {
+          title: 'あの日、何が起きたのか',
+          time: '五',
+          sentences: [
+            '「雨の多い街、ダブリン」',
+            'なんと心地よい響きだろう。',
+            '雨は嫌われ者かもしれないが...'
+          ]
+        }
       }
     }
   }

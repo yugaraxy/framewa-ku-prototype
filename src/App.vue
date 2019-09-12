@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <img src="./assets/logo1.png" width="300px" height="300px">
+    <img src="./assets/logo1.png" id="logo">
 
     <div>
       <button class="button" id="showButton" @click="showArticles">読む</button>
@@ -86,6 +86,10 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 30px;
+}
+
+#logo {
+  width: 75%;
 }
 
 .button {
