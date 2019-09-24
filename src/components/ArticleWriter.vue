@@ -1,6 +1,6 @@
 <template>
   <div id='writeSpace'>
-    <p>article writer page.</p>
+    <p>枠々クリエイターになる</p>
   </div>
 </template>
 

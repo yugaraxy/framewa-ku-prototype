@@ -1,9 +1,13 @@
 <template>
-  <div class="articleContainer">
-    <div id="article" v-for="article in articles" v-bind:key="article.id">
-      <p>{{ article.title }}<br>{{ article.time }}分</p>
+  <div>
+    <div id="readSelectedArticle">
+      <router-view />
     </div>
-    <router-view />
+    <div class="articleContainer">
+      <div id="article" v-for="article in articles" v-bind:key="article.id">
+        <p>{{ article.title }}<br>{{ article.time }}分</p>
+      </div>
+    </div>
   </div>
 </template>
 
