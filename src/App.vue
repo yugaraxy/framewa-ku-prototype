@@ -9,18 +9,34 @@
       <router-link class="button" id="showWriter" to='articleWriter'>書く</router-link>
     </div>
 
-    <router-view />
+    <button id="show-modal" @click="showModal = true">Show Modal</button>
+    <modal v-if="showModal" @close="showModal = false">
+      <h3 slot="header">custom header</h3>
+      <router-view name="modal"></router-view>
+    </modal>
+    <router-view name="default"></router-view>
   </div>
 </template>
 
 <script>
+import firebase from 'firebase'
+
 export default {
   name: 'App',
+  created: function () {
+    this.database = firebase.database()
+    this.articles = this.database.ref('articles')
+
+    var _this = this
+    this.articles.on('value', function (snapshot) {
+      _this.articles = snapshot.val()
+    })
+  },
   data: function () {
     return {
-      status: 1,
-      statusExpression: 'none',
-      articleNumber: 'none'
+      showModal: false,
+      database: null,
+      articles: null
     }
   }
 }
@@ -29,6 +45,7 @@ export default {
 <style>
 @media screen and (min-width:0px) {
   body {
+    height: 100%;
     margin: 10px;
     border: 5px solid black;
   }

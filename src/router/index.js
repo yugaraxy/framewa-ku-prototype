@@ -4,6 +4,7 @@ import Explanation from '@/components/Explanation'
 import Article from '@/components/Article'
 import ArticleWriter from '@/components/ArticleWriter'
 import ReadArticle from '@/components/ReadArticle'
+import ReadModal from '@/components/ReadModal'
 
 Vue.use(Router)
 
@@ -12,14 +13,9 @@ export default new Router({
     {
       path: '/',
       components: {
-        default: Explanation
-      },
-      children: [
-        {
-          path: '',
-          component: ReadArticle
-        }
-      ]
+        default: Explanation,
+        modal: ReadModal
+      }
     },
     {
       path: '/readArticle/:id',

@@ -1,14 +1,47 @@
 <template>
   <div id='writeSpace'>
-    <p>枠々クリエイターになる</p>
+      <p>クリエイター名</p>
+      <input v-model="newArticleAuthor">
+      <p>作品のタイトル</p>
+      <input v-model="newArticleName">
+      <p>クリエイター名: <br/>{{ newArticleAuthor }}</p>
+      <p>作品のタイトル: <br />{{ newArticleName }}</p>
+      <textarea v-model="newArticleContent"></textarea>
+      <button @click='createNewArticleContent'>提出</button>
   </div>
 </template>
 
 <script>
+import firebase from 'firebase'
+
 export default{
+  name: 'ArticleWriter',
+  created: function () {
+    this.database = firebase.database()
+    this.articles = this.database.ref('articles')
+  },
+  methods: {
+    createNewArticleContent: function () {
+      this.newArticleContent = this.newArticleContent.split('。')
+      this.createArticle()
+    },
+    createArticle: function () {
+      if (this.newArticleName === '') { return }
+      this.articles.push({
+        author: this.newArticleAuthor,
+        name: this.newArticleName,
+        time: this.newArticleTime,
+        content: this.newArticleContent
+      })
+      this.newArticleName = ''
+    }
+  },
   data: function () {
     return {
-      sentences: 'here is article writer page.'
+      newArticleName: 'sample text',
+      newArticleAuthor: '',
+      newArticleContent: '',
+      newArticleTime: ''
     }
   }
 }

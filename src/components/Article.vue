@@ -1,11 +1,8 @@
 <template>
   <div>
-    <div id="readSelectedArticle">
-      <router-view />
-    </div>
     <div class="articleContainer">
       <div id="article" v-for="article in articles" v-bind:key="article.id">
-        <p>{{ article.title }}<br>{{ article.time }}分</p>
+        <p>{{ article.name }}<br>{{ article.time }}分</p>
       </div>
     </div>
   </div>
@@ -14,9 +11,10 @@
 <script>
 export default {
   template: '<span>id: {{ $route.params.id }}</span>',
+  props: ['articles'],
   data: function () {
     return {
-      articles: {
+      art: {
         article1: {
           title: '何処へでも行きたい',
           time: '五',
