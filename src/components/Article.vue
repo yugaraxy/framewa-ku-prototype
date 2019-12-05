@@ -2,7 +2,7 @@
   <div>
     <div class="articleContainer">
       <div id="article" v-for="article in articles" v-bind:key="article.id">
-        <p>{{ article.name }}<br>{{ article.time }}分</p>
+        <p>{{ article }}<br>by {{ article.author }}</p>
       </div>
     </div>
   </div>
@@ -15,8 +15,13 @@ export default {
   template: '<span>id: {{ $route.params.id }}</span>',
   created: function () {
     this.database = firebase.database()
-    this.articles = this.database.ref('artiles')
-    console.log(this.articles)
+    this.articles = this.database.ref('artiles').once('value').then(function (snapshot) {
+      return snapshot.val()
+    })
+    console.log('created' + this.articles)
+  },
+  mounted: function () {
+    console.log('mounted:' + this.articles)
   },
   data: function () {
     return {
