@@ -12,6 +12,9 @@
 export default {
   template: '<span>id: {{ $route.params.id }}</span>',
   props: ['articles'],
+  created: function () {
+    console.log('<component-article>' + this.articles)
+  },
   data: function () {
     return {
       art: {
