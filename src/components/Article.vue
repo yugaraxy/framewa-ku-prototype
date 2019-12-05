@@ -2,7 +2,7 @@
   <div>
     <div class="articleContainer">
       <div id="article" v-for="article in articles" v-bind:key="article.id">
-        <p>{{ article }}<br>by {{ article.author }}</p>
+        <p>{{ article.name }}<br>by {{ article.author }}</p>
       </div>
     </div>
   </div>
@@ -13,15 +13,13 @@ import firebase from 'firebase'
 
 export default {
   template: '<span>id: {{ $route.params.id }}</span>',
-  created: function () {
+  created: async function () {
     this.database = firebase.database()
-    this.articles = this.database.ref('artiles').once('value').then(function (snapshot) {
+    this.articles = await this.database.ref('artiles').once('value').then(function (snapshot) {
+      console.log(snapshot.val())
       return snapshot.val()
     })
-    console.log('created' + this.articles)
-  },
-  mounted: function () {
-    console.log('mounted:' + this.articles)
+    console.log(this.articles)
   },
   data: function () {
     return {
