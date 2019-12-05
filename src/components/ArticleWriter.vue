@@ -18,7 +18,7 @@ export default{
   name: 'ArticleWriter',
   created: function () {
     this.database = firebase.database()
-    this.articles = this.database.ref('wakuwaku-2eeac')
+    this.articles = this.database.ref('artiles')
   },
   methods: {
     createNewArticleContent: function () {
@@ -27,7 +27,7 @@ export default{
     },
     createArticle: function () {
       if (this.newArticleName === '') { return }
-      this.articles.set({
+      this.articles.push({
         author: this.newArticleAuthor,
         name: this.newArticleName,
         time: this.newArticleTime,
