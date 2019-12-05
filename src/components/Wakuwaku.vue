@@ -18,21 +18,8 @@
 </template>
 
 <script>
-import firebase from 'firebase'
-
 export default {
   name: 'Wakuwaku',
-  created: function () {
-    this.database = firebase.database()
-    this.articles = this.database.ref('artiles')
-    console.log('<i-can-get-database?>' + this.database)
-    console.log('<component-parent>' + this.articles)
-
-    var _this = this
-    this.articles.on('value', function (snapshot) {
-      _this.articles = snapshot.val()
-    })
-  },
   data: function () {
     return {
       showModal: false,

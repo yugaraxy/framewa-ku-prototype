@@ -9,42 +9,19 @@
 </template>
 
 <script>
+import firebase from 'firebase'
+
 export default {
   template: '<span>id: {{ $route.params.id }}</span>',
-  props: ['articles'],
   created: function () {
-    console.log('<component-article>' + this.articles)
+    this.database = firebase.database()
+    this.articles = this.database.ref('artiles')
+    console.log(this.articles)
   },
   data: function () {
     return {
-      art: {
-        article1: {
-          title: '何処へでも行きたい',
-          time: '五',
-          sentences: [
-            '「じゃあ、アイルランドはどうですか？ダブリンは良い街ですよ。少し雨が多いけど...」',
-            '留学先を探していた時、そう提案された。',
-            '他の候補地はどこも魅力歴なビーチやナイトクラブが自慢で、開放的に...'
-          ]
-        },
-        article2: {
-          title: '餃子とチャーハン',
-          time: '三',
-          sentences: [
-            '「じゃあ、アイルランドはどうですか？ダブリンは良い街ですよ。少し雨が多いけど...」',
-            '留学先を探していた時、そう提案された。'
-          ]
-        },
-        article3: {
-          title: 'あの日、何が起きたのか',
-          time: '五',
-          sentences: [
-            '「雨の多い街、ダブリン」',
-            'なんと心地よい響きだろう。',
-            '雨は嫌われ者かもしれないが...'
-          ]
-        }
-      }
+      database: null,
+      articles: null
     }
   }
 }
