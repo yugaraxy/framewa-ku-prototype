@@ -2,7 +2,7 @@
   <div>
     <div class="articleContainer">
       <div id="article" v-for="article in articles" v-bind:key="article.id">
-        <router-link class="articles" :to="{ name : 'readArticle', params : { id: article.name }}">
+        <router-link class="articles" :to="{ name : 'readArticle', params : { id: article.id }}" v-on:click="console.log(article)">
           <p>{{ article.name }}<br>by {{ article.author }}</p>
         </router-link>
       </div>

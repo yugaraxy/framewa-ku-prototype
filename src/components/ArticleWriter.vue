@@ -25,9 +25,17 @@ export default{
       this.newArticleContent = this.newArticleContent.split('。')
       this.createArticle()
     },
+    createRandomId: function () {
+      var date = new Date()
+      var nowTime = date.getTime()
+      var randomString = Math.random().toString(36).slice(-8)
+      console.log(randomString)
+      return nowTime + randomString
+    },
     createArticle: function () {
       if (this.newArticleName === '') { return }
       this.articles.push({
+        id: this.createRandomId(),
         author: this.newArticleAuthor,
         name: this.newArticleName,
         time: this.newArticleTime,

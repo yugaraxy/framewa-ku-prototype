@@ -15,7 +15,7 @@ export default new Router({
       path: '/',
       component: Wakuwaku,
       children: [{
-        path: 'readArticle/:id',
+        path: '/:id/readArticle/',
         name: 'readArticle',
         component: ReadArticle
       },
