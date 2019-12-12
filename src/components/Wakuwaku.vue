@@ -5,8 +5,8 @@
     </router-link>
 
     <div>
-      <router-link class="button" id="showButton" to='article'>読む</router-link>
-      <router-link class="button" id="showWriter" to='articleWriter'>書く</router-link>
+      <router-link class="button" id="showButton" to='/article'>読む</router-link>
+      <router-link class="button" id="showWriter" to='/articleWriter'>書く</router-link>
     </div>
 
     <router-view name="default"/>

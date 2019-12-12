@@ -2,7 +2,9 @@
   <div>
     <div class="articleContainer">
       <div id="article" v-for="article in articles" v-bind:key="article.id">
-        <p>{{ article.name }}<br>by {{ article.author }}</p>
+        <router-link class="articles" :to="{ name : 'readArticle', params : { id: article.name }}">
+          <p>{{ article.name }}<br>by {{ article.author }}</p>
+        </router-link>
       </div>
     </div>
   </div>
@@ -50,5 +52,10 @@ export default {
   border: 5px solid black;
   height: 200px;
   text-align: center;
+}
+
+.articles {
+  text-decoration: none;
+  color: black;
 }
 </style>
