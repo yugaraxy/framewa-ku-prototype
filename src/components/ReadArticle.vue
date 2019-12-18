@@ -1,7 +1,9 @@
 <template>
   <div id="readFrame">
     <p>This is ReadArticle page!</p>
-    <p>・title: {{ this.article.key }}</p>
+    <p>title: {{ this.articleTitle }}</p>
+    <p>author: {{ this.articleAuthor }}</p>
+    <p>content: {{ this.articleContent }}</p>
   </div>
 </template>
 
@@ -11,15 +13,19 @@ import firebase from 'firebase'
 export default {
   created: async function () {
     var database = firebase.database()
-    var article = await database.ref('artiles').orderByChild('id').equalTo(this.$route.params['id']).once('value').then(function (snapshot) {
+    this.article = await database.ref('artiles').child(this.$route.params['id']).once('value').then(function (snapshot) {
       return snapshot.val()
     })
-    this.article = article
-    console.log(this.article)
+    this.articleTitle = this.article.name
+    this.articleAuthor = this.article.author
+    this.articleContent = this.article.content
   },
   data: function () {
     return {
-      article: null
+      article: null,
+      articleTitle: null,
+      articleAuthor: null,
+      articleContent: null
     }
   }
 }
@@ -31,5 +37,6 @@ export default {
   height: 400px;
   width: 72%;
   margin: auto;
+  margin-bottom: 10px;
 }
 </style>

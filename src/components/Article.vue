@@ -1,8 +1,8 @@
 <template>
   <div>
     <div class="articleContainer">
-      <div id="article" v-for="article in articles" v-bind:key="article.id">
-        <router-link class="articles" :to="{ name : 'readArticle', params : { id: article.id }}" v-on:click="console.log(article)">
+      <div id="article" v-for="(article, name) in articles" v-bind:key="article.id">
+        <router-link class="articles" :to="{ name : 'readArticle', params : { id: name }}" v-on:click="console.log(article)">
           <p>{{ article.name }}<br>by {{ article.author }}</p>
         </router-link>
       </div>
@@ -14,14 +14,12 @@
 import firebase from 'firebase'
 
 export default {
-  template: '<span>id: {{ $route.params.id }}</span>',
   created: async function () {
     this.database = firebase.database()
     this.articles = await this.database.ref('artiles').once('value').then(function (snapshot) {
       console.log(snapshot.val())
       return snapshot.val()
     })
-    console.log(this.articles)
   },
   data: function () {
     return {
