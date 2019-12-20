@@ -1,10 +1,13 @@
 <template>
+<section>
   <div id="readFrame">
     <p>This is ReadArticle page!</p>
     <p>title: {{ this.articleTitle }}</p>
     <p>author: {{ this.articleAuthor }}</p>
     <p>content: {{ this.articleContent }}</p>
+    <router-link class="button" :to="{ name : 'renderArticle', param: { id: this.$route.params['id']} }">スタート</router-link>
   </div>
+</section>
 </template>
 
 <script>

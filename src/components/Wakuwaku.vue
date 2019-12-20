@@ -13,7 +13,7 @@
     <!--<router-view name="modal"/>-->
     <router-view name="Article"/>
     <router-view name="ArticleWriter"/>
-    <router-view name="readArticle"/>
+    <router-view name="RenderArticle"/>
   </div>
 </template>
 

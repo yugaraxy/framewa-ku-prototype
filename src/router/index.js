@@ -5,6 +5,7 @@ import Wakuwaku from '@/components/Wakuwaku'
 import Article from '@/components/Article'
 import ArticleWriter from '@/components/ArticleWriter'
 import ReadArticle from '@/components/ReadArticle'
+import RenderArticle from '@/components/RenderArticle'
 // import ReadModal from '@/components/ReadModal'
 
 Vue.use(Router)
@@ -18,6 +19,11 @@ export default new Router({
         path: '/:id/readArticle/',
         name: 'readArticle',
         component: ReadArticle
+      },
+      {
+        path: '/:id/renderArticle',
+        name: 'renderArticle',
+        component: RenderArticle
       },
       {
         path: 'article',
