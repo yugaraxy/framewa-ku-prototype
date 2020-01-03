@@ -1,6 +1,6 @@
 <template>
 <section id='render-section'>
-  <router-link id='close-button':to="{ name : 'readArticle', prarams : { id: this.$route.params['id']} }">閉じる</router-link>
+  <router-link id='close-button' :to="{ name : 'readArticle', prarams : { id: this.$route.params['id']} }">閉じる</router-link>
   <canvas id='canvas'></canvas>
 </section>
 </template>
@@ -13,12 +13,25 @@ export default {
   data: function () {
     const scene = new THREE.Scene()
     const renderer = null
-    const camera = new THREE.PerspectiveCamera(75, 600 / 400, 0.1, 1000)
-    const light = new THREE.DirectionalLight(0xffffff)
-    const geometry = new THREE.BoxGeometry(1, 1, 1)
-    const material = new THREE.MeshNormalMaterial()
+
+    // Set some camera attributes.
+    const viewAngle = 75
+    const windowHeight = window.parent.screen.height
+    const windowWidth = window.parent.screen.width
+    const aspect = windowWidth / windowHeight
+    const near = 0.1
+    const far = 10000
+    const camera = new THREE.PerspectiveCamera(viewAngle, aspect, near, far)
+
+    const pointLight = new THREE.PointLight(0xFFFFFF)
+
+    const sphereRadius = 1
+    const sphereSegments = 1
+    const sphereRings = 1
+    const geometry = new THREE.BoxGeometry(sphereRadius, sphereSegments, sphereRings)
+    const material = new THREE.MeshLambertMaterial({ color: 0xCC0000 })
     const cube = new THREE.Mesh(geometry, material)
-    return { scene, renderer, camera, light, geometry, material, cube }
+    return { scene, renderer, camera, pointLight, geometry, material, cube }
   },
   mounted () {
     const $canvas = document.getElementById('canvas')
@@ -28,10 +41,9 @@ export default {
     })
 
     this.camera.position.set(0, 0, 2)
-    this.light.position.set(0, 0, 10)
+    this.pointLight.position.set(10, 50, 130)
     this.scene.add(this.cube)
-    this.scene.add(this.light)
-
+    this.scene.add(this.pointLight)
     this.animate()
   },
   methods: {
